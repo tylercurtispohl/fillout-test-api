@@ -86,7 +86,19 @@ const filterResponses = (
     return valid;
   });
 
-const getFilloutUrlSearchParamsFromRequest = (request: Request) => {
+/**
+ * Gets a URLSearchParams object and the passed in limit and offset from
+ * the request query parameters
+ * @param request
+ * @returns URLSearchParams object and the passed in limit and offset
+ */
+const getFilloutUrlSearchParamsFromRequest = (
+  request: Request
+): {
+  queryParams: URLSearchParams;
+  limit: number;
+  offset: number;
+} => {
   const {
     limit,
     afterDate,
@@ -135,7 +147,7 @@ const getFilloutUrlSearchParamsFromRequest = (request: Request) => {
 const getAllResponses = async (
   formId: string,
   queryParams: URLSearchParams
-) => {
+): Promise<FilloutResponseType[]> => {
   const filloutApiKey = process.env.FILLOUT_API_KEY || "";
 
   let currentPage = 0;
@@ -177,7 +189,9 @@ const getAllResponses = async (
  * @returns The response body including the filtered list of responses,
  * the total number of filtered responses, and the page count
  */
-export const getFilteredResponseBody = async (req: Request) => {
+export const getFilteredResponseBody = async (
+  req: Request
+): Promise<FilloutResponseBodyType> => {
   const filterParam = req.query.filter;
 
   if (typeof filterParam !== "string") {
