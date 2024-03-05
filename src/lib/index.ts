@@ -46,8 +46,10 @@ const filterResponses = (
     for (const filterClause of filterClauses) {
       const question = response.questions.find((q) => q.id === filterClause.id);
 
+      let isQuestionValid = false;
+
       if (!question) {
-        valid = false;
+        isQuestionValid = false;
         break;
       }
 
@@ -65,22 +67,24 @@ const filterResponses = (
 
       switch (filterClause.condition) {
         case "equals":
-          valid = finalQuestionValue === finalFilterValue;
+          isQuestionValid = finalQuestionValue === finalFilterValue;
           break;
         case "does_not_equal":
-          valid = finalQuestionValue !== finalFilterValue;
+          isQuestionValid = finalQuestionValue !== finalFilterValue;
           break;
         case "greater_than":
-          valid = finalQuestionValue > finalFilterValue;
+          isQuestionValid = finalQuestionValue > finalFilterValue;
           break;
         case "less_than":
-          valid = finalQuestionValue < finalFilterValue;
+          isQuestionValid = finalQuestionValue < finalFilterValue;
           break;
         default:
           throw new Error(
             "condition is not one of ['equals', 'does_not_equal', 'greater_than', 'less_than']"
           );
       }
+
+      valid = valid && isQuestionValid;
     }
 
     return valid;
