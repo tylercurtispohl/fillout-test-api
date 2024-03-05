@@ -4,10 +4,6 @@ export type FilterClauseType = {
   value: number | string;
 };
 
-// each of these filters should be applied like an AND in a "where" clause
-// in SQL
-// type ResponseFiltersType = ResponseFilter[];
-
 export type FilloutResponseBodyType = {
   responses: FilloutResponseType[];
   totalResponses: number;
@@ -16,7 +12,6 @@ export type FilloutResponseBodyType = {
 
 export type FilloutResponseType = {
   submissionId: string;
-  // TODO: these should actually be dates
   submissionTime: string;
   lastUpdatedAt: string;
   questions: FilloutQuestionType[];
