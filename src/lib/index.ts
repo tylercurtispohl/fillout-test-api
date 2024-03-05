@@ -187,7 +187,7 @@ export const getFilteredResponseBody = async (req: Request) => {
   const formId = req.params.formId;
 
   // Assume that the filterParam is in the format of FilterClauseType[]
-  // In the future, I would validate this better
+  // In the future, it would be good to validate this better
   const filterClauses = JSON.parse(filterParam) as FilterClauseType[];
 
   const { queryParams, limit, offset } =
