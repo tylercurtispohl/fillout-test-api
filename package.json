@@ -4,14 +4,19 @@
   "description": "A REST API endpoint to fetch form responses from the Fillout.com API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "serve": "node dist/index.js"
   },
   "author": "Tyler Pohl",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.21",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20.11.24",
+    "dotenv": "^16.4.5",
     "express": "^4.18.3",
+    "lodash": "^4.17.21",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
